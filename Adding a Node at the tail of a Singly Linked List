@@ -1,0 +1,24 @@
+  /** For reference:
+     *
+     * SinglyLinkedListNode {
+     *     int data;
+     *     SinglyLinkedListNode next;
+     * }
+     */
+     
+    public SinglyLinkedListNode append(SinglyLinkedListNode head, int data) {
+       
+        if(head == null){ // If the LinkedList is empty 
+            head = new SinglyLinkedListNode(data);
+            return head;
+        }
+         SinglyLinkedListNode t = head;
+         //If the list cointains 1 or more elements
+        while(t.next!=null){
+            t = t.next;
+            
+        }
+        t.next = new SinglyLinkedListNode(data);
+       
+        return head;
+    }
