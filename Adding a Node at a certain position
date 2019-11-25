@@ -1,0 +1,23 @@
+    /*
+     * For reference:
+     *
+     * SinglyLinkedListNode {
+     *     int data;
+     *     SinglyLinkedListNode next;
+     * }
+     *
+     */
+    public SinglyLinkedListNode insertNodeAtPosition(SinglyLinkedListNode head, int data, int position) {
+        int counter =0;
+        SinglyLinkedListNode it = head;
+        while(counter < position-1){
+            it = it.next;
+            counter++;
+        }
+
+        SinglyLinkedListNode temp = it.next;
+        SinglyLinkedListNode add = new SinglyLinkedListNode(data);
+        it.next = add;
+        add.next = temp;
+        return head; 
+      }
