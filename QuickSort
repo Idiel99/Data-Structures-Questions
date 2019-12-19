@@ -1,0 +1,53 @@
+/*
+    In Place
+    O(nlog(n))
+    Unstable Algorithm
+    Depending on the pivot this algorithm will perform differently
+    I am using the first element of the list as the pivot, ideally we would use the median of the entire arry
+ */
+
+public class QuickSort {
+    public static void main(String[] args) {
+        int [] x = {2,5,78,9,5,1,654,35,46,43};
+        print(x);
+        System.out.println();
+        sort(x,0 , x.length);
+        print(x);
+    }
+   
+    static void sort(int [] array, int start, int end){
+        if((end - start) < 2){
+            return;
+        }
+
+        int pivotIndex = partition(array, start, end);
+
+        sort(array, start ,pivotIndex);
+        sort(array, (pivotIndex + 1), end);
+    }
+
+    static int partition(int [] array, int start, int end){
+        int pivot = array[start];
+        int i = start;
+        int j = end;
+
+        while( i < j){
+            while(i < j && array[--j] >= pivot);
+                if(i<j){
+                    array[i] = array[j];
+                }
+            while(i < j && array[++i] <= pivot);
+                if(i<j){
+                    array[j] = array[i];
+                }
+        }
+        array[j] = pivot;
+        return j;
+    }
+
+    static void print(int [] array){
+        for (int i = 0; i < array.length; i++){
+            System.out.print(array[i] + " ");
+        }
+    }
+}
