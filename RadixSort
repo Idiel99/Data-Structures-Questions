@@ -1,0 +1,52 @@
+/*
+    Assumes all the values have the same radix and width
+    O(n) time complexity
+    Must use a stable algorithm at each stage
+ */
+
+public class RadixSort {
+    public static void main(String[] args) {
+        int[] x = {1,2,5,4,2,3,6,5};
+        sort(x,10 , 1);
+        print(x);
+    }
+
+    static void sort(int [] array, int radix , int width){
+        for(int i = 0; i < width ; i++){
+            radixSingleSort(array, i, radix);
+        }
+    }
+
+    static void radixSingleSort(int [] array, int position, int radix){
+        int numItems = array.length;
+        int[] count = new int[radix];
+
+        for (int value : array){
+            count[getDigit(position, value, radix)]++;
+        }
+
+        for(int i = 1 ; i < radix; i++){
+            count[i]+= count[i-1];
+        }
+
+        int[] temp= new int[numItems];
+
+        for(int tempIndex = numItems -1; tempIndex >= 0; tempIndex--){
+            temp[--count[getDigit(position, array[tempIndex], radix)]] = array[tempIndex];
+        }
+
+        for (int i = 0; i < numItems; i++){
+            array[i] = temp[i];
+        }
+    }
+
+    static int getDigit(int position, int value, int radix){
+        return (value / (int) Math.pow(radix,position)) % radix;
+    }
+    
+    static void print(int [] array){
+        for (int i = 0; i < array.length; i++){
+            System.out.print(array[i] + " ");
+        }
+    }
+}
