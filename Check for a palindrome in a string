@@ -1,0 +1,29 @@
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
+public class Palindrome {
+
+    public static void main(String[] args) {
+        System.out.println(checkForPalindrome("a"));
+    }
+    
+    static boolean checkForPalindrome(String str){
+        Stack<Character> stk = new Stack<>();
+        Queue<Character> queue = new LinkedList<>();
+        String strLower = str.toLowerCase();
+        for (int i = 0; i < strLower.length(); i++){
+            char c = strLower.charAt(i);
+            if(c >= 'a' && c <= 'z'){
+                queue.add(c);
+                stk.push(c);
+            }
+        }
+        while(!stk.isEmpty()){
+            if(!stk.pop().equals(queue.remove())){
+                return false;
+            }
+        }
+        return true;
+    }
+}
