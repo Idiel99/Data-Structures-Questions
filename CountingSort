@@ -1,0 +1,34 @@
+/*
+    Not in place
+    O(n) time Complexity
+    
+ */
+
+public class CountingSort {
+    public static void main(String[] args) {
+        int[] x = {1,2,5,4,2,3,6,5};
+        sort(x, 1, 10);
+        print(x);
+    }
+
+    static void sort(int[] array, int min, int max){
+        int[] countArray= new int[(max-min)+1];
+        for(int i = 0; i < array.length; i++){
+            countArray[array[i]-min] +=1;
+        }
+        int j =0;
+        for(int i = min; i <= max; i++){
+            while(countArray[i-min] > 0){
+                array[j++] = i;
+                countArray[i-min]--;
+            }
+        }
+    }
+
+    static void print(int [] array){
+        for (int i = 0; i < array.length; i++){
+            System.out.print(array[i] + " ");
+        }
+    }
+
+}
