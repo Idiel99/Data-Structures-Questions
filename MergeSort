@@ -1,0 +1,49 @@
+/*
+    Not In place
+    O(nlog(n)) base 2
+    Stable Algorithm
+*/
+public class MergeSort {
+    public static void main(String[] args) {
+        int [] x = {2,5,78,9,5,1,654,35,46,43};
+        sort(x,0 , x.length);
+        print(x);
+
+    }
+
+    static void sort(int [] array, int start, int end){
+        if((end - start) < 2){
+            return;
+        }
+        int mid  = (start + end) /2;
+
+        sort(array, start, mid);
+        sort(array, mid, end);
+
+        merge(array, start, mid, end);
+    }
+
+    static  void merge(int [] array, int start, int mid, int end){
+        if(array[mid -1] <= array[mid]){
+            return;
+        }
+        int i = start;
+        int j = mid;
+        int temp = 0;
+        int[] tempa = new int [end-start];
+
+        while(i < mid && j < end){
+            tempa[temp++] = array[i] <= array[j] ? array[i++]: array[j++];
+        }
+
+        System.arraycopy(array , i, array, (start + temp), (mid - i));
+        System.arraycopy(tempa,0, array, start, temp);
+
+    }
+
+    static void print(int [] array){
+        for (int i = 0; i < array.length; i++){
+            System.out.print(array[i] + " ");
+        }
+    }
+}
