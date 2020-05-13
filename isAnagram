@@ -1,0 +1,31 @@
+public boolean isAnagram(String s, String t) {
+        HashMap<Character, Integer> h1 = new HashMap<>(100000000);
+        HashMap<Character, Integer> h2 = new HashMap<>(100000000);
+        
+        if(s.length()!= t.length()){
+            return false;
+        }
+        int i = 0;
+        while(i < s.length()){
+            if(h1.containsKey(s.charAt(i))){
+                h1.replace(s.charAt(i), h1.get(s.charAt(i))+1);
+            }else{
+                h1.put(s.charAt(i), 1);
+            }
+            if(h2.containsKey(t.charAt(i))){
+                h2.replace(t.charAt(i), h2.get(t.charAt(i))+1);
+            }else{
+               h2.put(t.charAt(i), 1);
+            }
+            i++;
+        }
+        i = 0;
+        while(i<s.length()){
+            if(h1.get(s.charAt(i)) != h2.get(s.charAt(i)) ){
+                return false;
+            }
+            i++;
+        }
+        
+        return true;
+    }
