@@ -1,0 +1,19 @@
+public int maxArea(int[] height) {
+        int max = 0; //maximum area
+        int left = 0;//left pointer
+        int right = height.length - 1;//right pointer end of array
+        
+        while (left < right) {
+            max = Math.max(max, (Math.min(height[left], height[right])) * (right - left));//max between current and max area
+            
+            //move the pointer with less height
+            if (height[left] < height[right]){
+                left++; 
+            }
+            else{
+                right--;
+                    
+                }
+        }
+        return max;
+    }
