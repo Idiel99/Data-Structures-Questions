@@ -1,0 +1,29 @@
+ public Node connect(Node root){
+     	
+        if(root == null){
+            return null;
+        }
+        
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+        int i = 0;
+        int count = 0;
+        
+        while(!q.isEmpty()){
+	        Node temp = q.remove();
+	        count++;
+	        if(count == Math.pow(2, i)){
+                temp.next=null;   //Point to null instead of next element in queue
+                i++;
+                count = 0;
+            }else{
+	            temp.next = q.peek();
+            }
+
+            if(temp.left !=null){
+                q.add(temp.left);
+                q.add(temp.right);
+            }
+        }
+        return root;
+    }  
