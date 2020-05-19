@@ -1,0 +1,31 @@
+public boolean isHappy(int n) 
+    {
+        int sum = 0;
+        Set set = new HashSet();
+        
+        while(sum != 1)
+        {
+            if(!set.add(n)){
+                  return false;
+            }
+            sum = 0;
+            int amountOfDigits = (int)(Math.log10(n)+1);
+            
+            while(amountOfDigits > 0)
+            {
+                if(n > 9)
+                {
+                    sum += Math.pow((n % 10) ,2);
+                    n/=10;
+                }
+                else
+                {
+                    sum += Math.pow(n ,2);
+                }
+                amountOfDigits--;
+            }  
+            n = sum;
+        }
+        
+        return true;
+    }
